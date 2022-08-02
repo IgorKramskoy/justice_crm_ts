@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Beer} from "../models/Beer";
 
-
 interface BeerState {
     beers: Beer[];
     isLoading: boolean;
@@ -32,6 +31,4 @@ export const beerSlice = createSlice({
     }
 });
 
-// export const {fetching, fetchSuccess, fetchError} = bearSlice.actions;
-// export const selectBear = (state: RootState) => state.bear.bears;
 export default beerSlice.reducer;
