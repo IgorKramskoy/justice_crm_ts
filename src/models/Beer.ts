@@ -37,7 +37,7 @@ interface Ingredients {
     yeast: string;
 }
 
-export interface Bear {
+export interface Beer {
     id: number;
     name: string;
     tagline: string;
@@ -62,5 +62,6 @@ export interface Bear {
     brewers_tips: string;
     contributed_by: string;
 }
+
 
 

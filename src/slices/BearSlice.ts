@@ -1,38 +1,37 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from '../app/store';
-import {Bear} from "../models/Bear";
+import {Beer} from "../models/Beer";
 
 
-interface BearState {
-    bears: Bear[];
+interface BeerState {
+    beers: Beer[];
     isLoading: boolean;
     error: string;
 }
 
-const initialState: BearState = {
-    bears: [],
+const initialState: BeerState = {
+    beers: [],
     isLoading: false,
     error: '',
-}
+};
 
-export const bearSlice = createSlice({
-    name: 'bear',
+export const beerSlice = createSlice({
+    name: 'beer',
     initialState,
     reducers: {
         fetching(state) {
             state.isLoading = true
         },
-        fetchSuccess(state, action: PayloadAction<Bear[]>) {
+        fetchSuccess(state, action: PayloadAction<Beer[]>) {
             state.isLoading = false
-            state.bears = action.payload
+            state.beers = action.payload
         },
         fetchError(state, action: PayloadAction<Error>) {
             state.isLoading = false
             state.error = action.payload.message
         }
     }
-})
+});
 
-export const {fetching, fetchSuccess, fetchError} = bearSlice.actions;
-export const selectBear = (state: RootState) => state.bear.bears;
-export default bearSlice.reducer;
+// export const {fetching, fetchSuccess, fetchError} = bearSlice.actions;
+// export const selectBear = (state: RootState) => state.bear.bears;
+export default beerSlice.reducer;

@@ -1,27 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
-import {
-    useAppSelector,
-    // useAppDispatch
-} from './app/hooks';
-// import {
-//   fetching,
-//   fetchSuccess,
-//   fetchError,
-//   selectBear,
-// } from './slices/BearSlice';
+import {fetchBeers} from "./actions/beerActions";
+import {useAppDispatch, useAppSelector} from "./app/hooks";
 
 
 function App() {
-  const {bears, error, isLoading} = useAppSelector(state => state.bear);
-  // const dispatch = useAppDispatch();
-  console.log(bears, error, isLoading)
-  return (
-      <>
-      </>
-  )
-
-
+    const dispatch = useAppDispatch();
+    const {beers} = useAppSelector(state => state.beer)
+    useEffect(() => {
+        dispatch(fetchBeers())
+    }, [])
+    return (
+        <>
+            {JSON.stringify(beers)}
+        </>
+    )
 }
 
 export default App;
