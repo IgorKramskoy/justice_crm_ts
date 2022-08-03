@@ -56,7 +56,7 @@ export const ChartPie = () => {
   }, [beers])
   return (
     <Box>
-      {dataBears.length > 0 && <Echarts option={options} style={{width: '450px',}}/>}
+      {dataBears.length > 0 && <Echarts option={options}/>}
     </Box>
   );
 }
