@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import './App.css';
-import {fetchBeers} from "./actions/beerActions";
-import {useAppDispatch, useAppSelector} from "./app/hooks";
 import { Wrapper } from './Components/Common/Wrapper';
+
+import {fetchBeers} from "./actions/beerActions";
+import {useAppDispatch } from "./app/hooks";
 import { routes } from './routes';
+import './App.css';
 
 function App() {
     const dispatch = useAppDispatch();
-    const {beers} = useAppSelector(state => state.beer);
-    console.log(beers);
+
     useEffect(() => {
         dispatch(fetchBeers())
     }, [])

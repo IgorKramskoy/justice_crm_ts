@@ -1,4 +1,5 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
+
 import beerReducer from '../slices/BearSlice';
 
 const rootReducer = combineReducers({
