@@ -5,7 +5,7 @@ import {
   TableBody,
   TableHead,
   TableRow,
-  Paper,
+  Paper, Typography,
 } from '@mui/material';
 import {
   Container,
@@ -13,12 +13,17 @@ import {
   StyledTableCellHead,
   StyledTableRow
 } from './Table.styles';
+
 import { useAppSelector } from '../../../../app/hooks';
 
 
 export const TableProduct = () => {
   const {beers} = useAppSelector(state => state.beer);
+  console.log(beers)
 
+  if (beers.length === 0) {
+    return <Typography variant="h1">Нет пивка</Typography>
+  }
   return (
     <Container component={Paper}>
       <Table sx={{minWidth: 1200,backgroundColor: 'none',}} aria-label="customized table">
@@ -35,23 +40,23 @@ export const TableProduct = () => {
         </TableHead>
         <TableBody>
           {beers?.map((row) => (
-            <StyledTableRow key={row?.id}>
+            <StyledTableRow key={row.id}>
               <StyledTableCell component="th" scope="row">
-                {row?.name}
+                {row.name}
               </StyledTableCell>
               <StyledTableCell sx={{opacity: 'none',}} align="right">
                 <img
-                  src={row?.image_url}
+                  src={row.image_url}
                   alt="logo"
                   width="50px"
                   height="150px"
                 />
               </StyledTableCell>
-              <StyledTableCell align="center">{row?.first_brewed}</StyledTableCell>
-              <StyledTableCell align="center">{row?.ingredients.yeast}</StyledTableCell>
-              <StyledTableCell align="center">{row?.ibu}</StyledTableCell>
-              <StyledTableCell align="center">{row?.ebc}</StyledTableCell>
-              <StyledTableCell align="center">{row?.abv}</StyledTableCell>
+              <StyledTableCell align="center">{row.first_brewed}</StyledTableCell>
+              <StyledTableCell align="center">{row.ingredients.yeast}</StyledTableCell>
+              <StyledTableCell align="center">{row.ibu}</StyledTableCell>
+              <StyledTableCell align="center">{row.ebc}</StyledTableCell>
+              <StyledTableCell align="center">{row.abv}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
