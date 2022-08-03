@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 
 import { useAppSelector } from '../../../../app/hooks';
 
-export const ChartPie = () => {
+export const CharLine = () => {
   const [dataBears, setDataBears] = useState([]);
 
   const {beers} = useAppSelector(state => state.beer);
@@ -13,45 +13,34 @@ export const ChartPie = () => {
   const options = {
     title: {
       text: 'Index IBU',
-      left: 'center'
+      left: 'center',
+      top: '20px'
     },
-    tooltip: {
-      trigger: 'item'
+    xAxis: {
+      show: false,
+      type: 'category',
+      data: dataBears,
     },
-    legend: {
-      top: '25%',
-      orient: 'vertical',
-      left: '65%'
+    yAxis: {
+      type: 'value',
+      show: false
+    },
+    axisPointer: {
+      show: false,
+      type: 'none',
     },
     series: [
       {
-        name: 'Access From',
-        type: 'pie',
-        radius: ['0%', '70%'],
-        left: 0,
-        right: '40%',
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: 'center'
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: '20',
-          }
-        },
-        labelLine: {
-          show: false
-        },
-        data: dataBears
+        data: dataBears,
+        type: 'line',
+        color: '#1CAF7F'
       }
     ]
   };
   useEffect(() => {
     const newDataBeer = beers.slice(10, 16);
     const dataChart = newDataBeer.map((item) => {
-      return {value: item.ibu, name: item.name}
+      return item.ibu
     })
     setDataBears(dataChart)
   }, [beers])
