@@ -11,14 +11,16 @@ export const Wrapper = ({children}) => {
   return (
     <Box sx={{display: 'flex'}}>
       <NavBar>
-        <img src={logo} alt="logo"/>
+        <Box sx={{padding: '10px'}}>
+          <img src={logo} alt="logo"/>
+        </Box>
         <Links>
           {links.map(({path, image, text}) => (
             <CustomNavLink key={path} path={path} image={image} text={text}/>
           ))}
         </Links>
       </NavBar>
-      <Box sx={{padding: '40px'}}>
+      <Box sx={{padding: '40px', backgroundColor: '#F8F8F8', width: '100%'}}>
         {children}
       </Box>
     </Box>

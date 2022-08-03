@@ -13,6 +13,7 @@ export const Links = styled(Box)(() => ({
     textDecoration: 'none',
     fontFamily: 'Inter',
     fontSize: '14px',
+    fontWeight: '500'
   },
   '& a.active': {
     color: '#5382E7',
@@ -23,7 +24,5 @@ export const NavBar = styled(Box)(() => ({
   width: '274px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  paddingLeft: '20px',
   paddingTop: '30px',
 }))
