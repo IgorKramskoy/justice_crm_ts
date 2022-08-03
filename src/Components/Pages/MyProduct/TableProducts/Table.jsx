@@ -19,7 +19,6 @@ import { useAppSelector } from '../../../../app/hooks';
 
 export const TableProduct = () => {
   const {beers} = useAppSelector(state => state.beer);
-  console.log(beers)
 
   if (beers.length === 0) {
     return <Typography variant="h1">Нет пивка</Typography>

@@ -20,7 +20,7 @@ export const Wrapper = ({children}) => {
           ))}
         </Links>
       </NavBar>
-      <Box sx={{padding: '40px', backgroundColor: '#F8F8F8', width: '100%'}}>
+      <Box sx={{padding: '40px', backgroundColor: '#F8F8F8', width: '100%', height:'91vh'}}>
         {children}
       </Box>
     </Box>
