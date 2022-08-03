@@ -7,6 +7,13 @@ import { SteperForm } from './Form.styled';
 
 export const Form = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [state, setState] = useState({
+    name: '',
+    surname: '',
+    age: 0,
+    email: '',
+  });
+  console.log(state)
 
   const fields = [{
     name: 'name',
@@ -45,6 +52,13 @@ export const Form = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+ const handleChange = () => {
+   setState(prevState => {
+     return {...prevState };
+   });
+  }
+
+
   return (
     <SteperForm>
       {fields.map(({label, name, type}, index) => (
@@ -53,6 +67,7 @@ export const Form = () => {
             label={label}
             type={type}
             name={name}
+            onChange={(e) => {handleChange(e)}}
           />}
         </Box>
 
