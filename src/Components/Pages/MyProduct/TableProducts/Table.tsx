@@ -5,7 +5,7 @@ import {
   TableBody,
   TableHead,
   TableRow,
-  Paper, Typography,
+  Typography,
 } from '@mui/material';
 import {
   Container,
@@ -24,7 +24,7 @@ export const TableProduct = () => {
     return <Typography variant="h1">Нет пивка</Typography>
   }
   return (
-    <Container component={Paper}>
+    <Container>
       <Table sx={{minWidth: 1200,backgroundColor: 'none',}} aria-label="customized table">
         <TableHead>
           <TableRow>

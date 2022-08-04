@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 import { useAppSelector } from '../../../../app/hooks';
 
 export const CharLine = () => {
-  const [dataBears, setDataBears] = useState([]);
+  const [dataBears, setDataBears] = useState<number[]>([]);
 
   const {beers} = useAppSelector(state => state.beer);
 
