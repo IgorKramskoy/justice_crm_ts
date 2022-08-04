@@ -17,7 +17,10 @@ export const Links = styled(Box)(() => ({
   },
   '& a.active': {
     color: '#5382E7',
-    borderRight: '1px solid #5382E7'
+    borderRight: '1px solid #5382E7',
+    '& svg path': {
+      stroke: '#5382E7',
+    }
   },
 }))
 export const NavBar = styled(Box)(() => ({

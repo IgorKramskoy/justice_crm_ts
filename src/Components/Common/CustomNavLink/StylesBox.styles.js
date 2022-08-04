@@ -27,3 +27,12 @@ export const StylesBox = styled(Box)`
     }
   }}
 `;
+export const BoxImage = styled(Box)(() => ({
+  width: '24px',
+  height: '24px',
+
+}))
+export const BoxText = styled(Box)(() => ({
+  alignItems: 'center',
+  fontSize: '14px',
+}))
