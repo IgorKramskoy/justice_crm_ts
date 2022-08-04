@@ -13,7 +13,6 @@ export const Form = () => {
     age: 0,
     email: '',
   });
-  console.log(state)
 
   const fields = [{
     name: 'name',
@@ -42,9 +41,7 @@ export const Form = () => {
   }]
 
   const handleNext = () => {
-    if (activeStep === fields.length - 1) {
-      console.log('LAST STEP')
-    } else {
+    if (activeStep < fields.length - 1) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
@@ -52,13 +49,14 @@ export const Form = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
- const handleChange = () => {
-   setState(prevState => {
-     return {...prevState };
-   });
+  const handleChange = (e) => {
+    setState(prevState => {
+      return {...prevState, [e.target.name]: e.target.value };
+    });
   }
-
-
+  const handleFinish = () => {
+    console.log(state)
+  }
   return (
     <SteperForm>
       {fields.map(({label, name, type}, index) => (
@@ -70,16 +68,20 @@ export const Form = () => {
             onChange={(e) => {handleChange(e)}}
           />}
         </Box>
-
       ))}
       <Box sx={{display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px',}}>
         {activeStep !== 0 && <Button onClick={handleBack} variant="contained" size="small">
           Back
         </Button>
         }
-        <Button onClick={handleNext} variant="contained" size="small">
+        {activeStep <= 2 && <Button onClick={handleNext} variant="contained" size="small">
           Next
         </Button>
+        }
+        {activeStep === 3 && <Button onClick={handleFinish} variant="contained" size="small">
+          Next
+        </Button>
+        }
       </Box>
     </SteperForm>
   );
