@@ -15,7 +15,6 @@ export const CustomTextField = (
     error,
     type,
     errorMessage,
-    touched,
     disabled
   }
 ) => {
@@ -31,7 +30,7 @@ export const CustomTextField = (
         type={type}
         disabled={disabled}
       />
-      {errorMessage && touched ? (
+      {errorMessage ? (
         <TypographyError variant="caption">
           {errorMessage}
         </TypographyError>

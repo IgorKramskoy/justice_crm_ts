@@ -7,6 +7,9 @@ import { SteperForm } from './Form.styled';
 
 export const Form = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [error, setError] = useState(false);
+  const [required, setRequired] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
   const [state, setState] = useState({
     name: '',
     surname: '',
@@ -14,6 +17,7 @@ export const Form = () => {
     email: '',
   });
 
+  const regEmail = /\S+@\S+\.\S+/ ;
   const fields = [{
     name: 'name',
     label: 'Имя',
@@ -50,12 +54,69 @@ export const Form = () => {
   };
 
   const handleChange = (e) => {
-    setState(prevState => {
-      return {...prevState, [e.target.name]: e.target.value };
-    });
+    if (e.target.name === 'name' || e.target.name === 'surname') {
+      setRequired(true)
+      if (e.target.value.length < 3 ) {
+        setError(true)
+        setErrorMessage('Слишком короткий!')
+      }
+      if (e.target.value.length > 255 ) {
+        setError(true)
+        setErrorMessage('Слишком длинный!')
+      }
+      if (e.target.value.length > 3 && e.target.value.length < 255 ) {
+        setError(false)
+        setRequired(true)
+        setErrorMessage('')
+      }
+      setState(prevState => {
+        return {...prevState, [e.target.name]: e.target.value};
+      });
+    }
+    if (e.target.name === 'age') {
+      setRequired(true)
+      if (e.target.value.length === 0 ) {
+        setRequired(true)
+      }
+      if (e.target.value.length === 1) {
+        setError(true)
+        setErrorMessage('Слишком короткий!')
+      }
+      if (e.target.value.length > 100) {
+        setError(true)
+        setErrorMessage('Слишком длинный!')
+      }
+      if (e.target.value.length > 1 && e.target.value.length < 100) {
+        setError(false)
+        setErrorMessage('')
+        setRequired(false)
+      }
+      setState(prevState => {
+        return {...prevState, [e.target.name]: e.target.value};
+      });
+    }
+    if (e.target.name === 'email') {
+      setRequired(true)
+      if (!regEmail.test(e.target.value)) {
+        setError(true)
+        setErrorMessage('Некоректный Email!')
+      }
+      if (regEmail.test(e.target.value)) {
+        setError(false)
+        setErrorMessage('')
+        setRequired(false)
+      }
+      setState(prevState => {
+        return {...prevState, [e.target.name]: e.target.value};
+      });
+    }
   }
   const handleFinish = () => {
-    console.log(state)
+    if(error || required) {
+      console.log('Некоректные данные!')
+    } else {
+      console.log(state)
+    }
   }
   return (
     <SteperForm>
@@ -65,7 +126,12 @@ export const Form = () => {
             label={label}
             type={type}
             name={name}
-            onChange={(e) => {handleChange(e)}}
+            onChange={(e) => {
+              handleChange(e)
+            }}
+            error={error}
+            value={state[name]}
+            errorMessage={errorMessage}
           />}
         </Box>
       ))}
