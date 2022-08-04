@@ -4,9 +4,10 @@ import Echarts from 'echarts-for-react';
 import { Box } from '@mui/material';
 
 import { useAppSelector } from '../../../../app/hooks';
+import {ChartPieType} from "./ChartPie.types";
 
 export const ChartPie = () => {
-  const [dataBears, setDataBears] = useState([]);
+  const [dataBears, setDataBears] = useState<[] | ChartPieType[]>([]);
 
   const {beers} = useAppSelector(state => state.beer);
 
@@ -53,6 +54,7 @@ export const ChartPie = () => {
     const dataChart = newDataBeer.map((item) => {
       return {value: item.ibu, name: item.name}
     })
+    console.log(dataChart)
     setDataBears(dataChart)
   }, [beers])
   return (
