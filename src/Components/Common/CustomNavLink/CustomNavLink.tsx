@@ -7,7 +7,9 @@ import {
     StylesBox
 } from './StylesBox.styles';
 
-export const CustomNavLink = ({path , image, text, onClick}: any) => {
+import {CustomNavLinkType} from "./CustomNavLink.types";
+
+export const CustomNavLink = ({path , image, text, onClick}: CustomNavLinkType) => {
   return (
     <NavLink to={path} onClick={onClick}>
       <StylesBox>

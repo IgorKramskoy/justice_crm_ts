@@ -1,7 +1,9 @@
+import React from "react";
+
 export interface CustomTextFieldProps {
     label: string
     value?: number | string
-    onChange: any
+    onChange: React.ChangeEventHandler<HTMLInputElement>
     name: string
     error: boolean
     type: string

@@ -54,7 +54,6 @@ export const ChartPie = () => {
     const dataChart = newDataBeer.map((item) => {
       return {value: item.ibu, name: item.name}
     })
-    console.log(dataChart)
     setDataBears(dataChart)
   }, [beers])
   return (
