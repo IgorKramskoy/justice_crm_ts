@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 
 import {useAppSelector} from "../../../../app/hooks";
 
-export const CharlineUtils = () => {
+export const useCharlineUtils = () => {
     const [dataBears, setDataBears] = useState<number[]>([]);
 
     const {beers} = useAppSelector(state => state.beer);
