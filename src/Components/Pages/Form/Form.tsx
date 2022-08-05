@@ -6,12 +6,23 @@ import {CustomTextField} from '../../Common/CustomTextField'
 import {SteperForm} from './Form.styled';
 import {TState} from "./Form.types";
 
+interface Fields {
+    name: keyof TState
+    label: string
+    type: string
+    max_length?: number
+    min_length?: number
+    regex?: string
+    min?: number
+    max?: number
+}
+
 export const Form = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [error, setError] = useState(false);
     const [required, setRequired] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
-    const [state, setState] = useState<TState>({
+    const [state, setState] = useState<Record<keyof TState, string | number>>({
         name: '',
         surname: '',
         age: 0,
@@ -19,7 +30,7 @@ export const Form = () => {
     });
 
     const regEmail = /\S+@\S+\.\S+/;
-    const fields = [{
+    const fields: Fields[] = [{
         name: 'name',
         label: 'Имя',
         type: 'text',
@@ -55,6 +66,7 @@ export const Form = () => {
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.name)
         if (e.target.name === 'name' || e.target.name === 'surname') {
             setRequired(true)
             if (e.target.value.length < 3) {
@@ -122,7 +134,7 @@ export const Form = () => {
 
     return (
         <SteperForm>
-            {fields.map(({label, name, type}, index) => {
+            {fields.map(({ name, label, type }, index) => {
                 return (
                     <Box key={name} sx={{width: '40%'}}>
                         {activeStep === index &&
@@ -130,11 +142,9 @@ export const Form = () => {
                             label={label}
                             type={type}
                             name={name}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                handleChange(e)
-                            }}
+                            onChange={handleChange}
                             error={error}
-                            value={state.name}
+                            value={state[name]}
                             errorMessage={errorMessage}
                           />}
                     </Box>
