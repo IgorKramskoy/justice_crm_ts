@@ -5,6 +5,7 @@ import {
   TextField,
 } from '@mui/material';
 import { TypographyError } from './CustomTextField.styles';
+import {CustomTextFieldProps} from "./CustomTextField.types";
 
 export const CustomTextField = (
   {
@@ -15,8 +16,7 @@ export const CustomTextField = (
     error,
     type,
     errorMessage,
-    disabled
-  }
+  }: CustomTextFieldProps
 ) => {
   return (
     <Box>
@@ -28,7 +28,6 @@ export const CustomTextField = (
         onChange={onChange}
         error={error}
         type={type}
-        disabled={disabled}
       />
       {errorMessage ? (
         <TypographyError variant="caption">

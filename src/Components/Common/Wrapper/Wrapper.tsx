@@ -7,7 +7,7 @@ import { Links, NavBar } from './Wraper.styled';
 import { links } from '../../../links';
 import logo from '../../../assests/images/logo.svg'
 
-export const Wrapper = ({children}) => {
+export const Wrapper = ({children}: any) => {
   return (
     <Box sx={{display: 'flex'}}>
       <NavBar>

@@ -6,8 +6,8 @@ import { Box } from '@mui/material';
 import { useAppSelector } from '../../../../app/hooks';
 
 export const ChartBar = () => {
-  const [dataValueBears, setDataValueBears] = useState([]);
-  const [dataBears, setDataBears] = useState([]);
+  const [dataValueBears, setDataValueBears] = useState<number[]>([]);
+  const [dataBears, setDataBears] = useState<string[]>([]);
 
   const {beers} = useAppSelector(state => state.beer);
 
@@ -28,10 +28,10 @@ export const ChartBar = () => {
   };
   useEffect(() => {
     const newDataBeer = beers.slice(10, 16);
-    const dataValueChart = newDataBeer.map((item) => {
+    const dataValueChart: number[] = newDataBeer.map((item) => {
       return item.ibu
     })
-    const dataChart = newDataBeer.map((item) => {
+    const dataChart: string[]= newDataBeer.map((item) => {
       return item.name
     })
     setDataBears(dataChart)
